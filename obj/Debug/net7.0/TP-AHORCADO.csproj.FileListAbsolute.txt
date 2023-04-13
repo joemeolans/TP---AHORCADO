@@ -1,0 +1,15 @@
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\bin\Debug\net7.0\TP-AHORCADO.exe
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\bin\Debug\net7.0\TP-AHORCADO.deps.json
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\bin\Debug\net7.0\TP-AHORCADO.runtimeconfig.json
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\bin\Debug\net7.0\TP-AHORCADO.dll
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\bin\Debug\net7.0\TP-AHORCADO.pdb
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.dll
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\refint\TP-AHORCADO.dll
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.pdb
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\TP-AHORCADO.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\BOOTCAMP 2023\TP-AHORCADO\obj\Debug\net7.0\ref\TP-AHORCADO.dll
