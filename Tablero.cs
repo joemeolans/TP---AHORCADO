@@ -6,8 +6,10 @@ namespace Diveria.Ahorcado
     {
         internal bool ChequearWin(string palabraOculta)
         {
-            foreach(char s in palabraOculta){
-                if(s=='_'){
+            foreach (char s in palabraOculta)
+            {
+                if (s == '_')
+                {
                     return false;
                 }
             }
@@ -15,12 +17,14 @@ namespace Diveria.Ahorcado
         }
         internal bool SinVidas(int vidas)
         {
-            if(vidas==0){
+            if (vidas == 0)
+            {
                 return true;
             }
             return false;
         }
-        public string CrearPalabraOculta(string palabraRandom){
+        public string CrearPalabraOculta(string palabraRandom)
+        {
             string palabra_oculta = palabraRandom.Replace(palabraRandom, new string('_', palabraRandom.Length));
             return palabra_oculta;
         }
@@ -37,7 +41,8 @@ namespace Diveria.Ahorcado
 
         }
 
-        public void DibujarPalabraResultante(){
+        public void DibujarPalabraResultante()
+        {
 
         }
     }
