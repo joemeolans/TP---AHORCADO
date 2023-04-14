@@ -41,9 +41,5 @@ namespace Diveria.Ahorcado
 
         }
 
-        public void DibujarPalabraResultante()
-        {
-
-        }
     }
 }
