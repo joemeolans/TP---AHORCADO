@@ -8,19 +8,22 @@ namespace Diveria.Ahorcado
         Jugador _jugador;
         Tablero _tablero;
         Palabra _palabra;
-        
+        string palabraOculta;
+        int vidas;
         public Ahorcado()
         {
             this._jugador = new Jugador();
             this._tablero = new Tablero();
             this._palabra = new Palabra();
+            this.palabraOculta = "null";
+            this.vidas = 5;
         }
         static void Main(string[] args)
         {
             new Ahorcado().Jugar();
         }
         
-        string palabraOculta;
+        
         private void Jugar()
         {
             string palabraRandom;
@@ -43,17 +46,17 @@ namespace Diveria.Ahorcado
                     this.DibujarPalabraResultante(palabraOculta);
                 }
                 else{
-                    //this.RestarVidas();
+                    this.RestarVidas(vidas);
                 }
 
-            } while (!(this._tablero.ChequearWin()) && !(this._tablero.HorcaIsFull()));
+            } while (!(this._tablero.ChequearWin(palabraOculta)) || !(this._tablero.SinVidas(vidas)));
 
-            if (this._tablero.ChequearWin())
+            if (this._tablero.ChequearWin(palabraOculta))
             {
                 this.DisplayWin();
             }
 
-            if (this._tablero.HorcaIsFull())
+            if (this._tablero.SinVidas(vidas))
             {
                 this.DisplayLose();
             }
@@ -76,12 +79,22 @@ namespace Diveria.Ahorcado
         {
             Console.Clear();
             Console.WriteLine("Adivinaste la palabra, felicidades!");
+            Console.WriteLine("Presiona ENTER para cerrar el juego");
+            ConsoleKeyInfo tecla;
+            do{
+                tecla = Console.ReadKey();
+            }while(tecla.Key != ConsoleKey.Enter);
         }
 
         private void DisplayLose()
         {
             Console.Clear();
             Console.WriteLine("Has perdido!");
+            Console.WriteLine("Presiona ENTER para cerrar el juego");
+            ConsoleKeyInfo tecla;
+            do{
+                tecla = Console.ReadKey();
+            }while(tecla.Key != ConsoleKey.Enter);
         }
 
         private void ActualizarPalabraResultante(char charIngresado, string palabraRandom){
@@ -101,6 +114,10 @@ namespace Diveria.Ahorcado
                 Console.Write(" "+s+" ");
             }
             Console.WriteLine("");
+        }
+
+        private void RestarVidas(int vidas){
+            vidas--;
         }
 
     }

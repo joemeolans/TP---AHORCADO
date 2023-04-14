@@ -4,12 +4,20 @@ namespace Diveria.Ahorcado
 {
     class Tablero
     {
-        internal bool ChequearWin()
+        internal bool ChequearWin(string palabraOculta)
         {
-            return false;
+            foreach(char s in palabraOculta){
+                if(s=='_'){
+                    return false;
+                }
+            }
+            return true;
         }
-        internal bool HorcaIsFull()
+        internal bool SinVidas(int vidas)
         {
+            if(vidas==0){
+                return true;
+            }
             return false;
         }
         public string CrearPalabraOculta(string palabraRandom){

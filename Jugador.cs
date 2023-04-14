@@ -11,11 +11,8 @@ namespace Diveria.Ahorcado
             char letra;
             do{
                 letra = Console.ReadKey().KeyChar;
-            }while(!(char.IsLetterOrDigit(letra)));
-            if(char.IsLetter(letra)){
-                char.ToUpper(letra);
-            }
-            return letra;
+            }while(!(char.IsLetter(letra)));
+            return char.ToUpper(letra);
         }
     }
 }
