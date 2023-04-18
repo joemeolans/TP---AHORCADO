@@ -4,63 +4,62 @@ namespace Diveria.Ahorcado
 {
     class Ahorcado
     {
-
-        Jugador _jugador;
-        Tablero _tablero;
-        Palabra _palabra;
-        string palabraOculta;
-        int vidas;
-        List<char> letrasIncorrectas;
+        Player _player;
+        Board _board;
+        Word _word;
+        //int lifes;
+        //List<char> wrongLetters;
         public Ahorcado()
         {
-            this._jugador = new Jugador();
-            this._tablero = new Tablero();
-            this._palabra = new Palabra();
-            this.palabraOculta = "null";
-            this.vidas = 5;
-            this.letrasIncorrectas = new List<char>();
+            this._player = new Player();
+            this._board = new Board();
+            this._word = new Word();
+            //this.lifes = 5;
+            //this.wrongLetters = new List<char>();
         }
         static void Main(string[] args)
         {
-            new Ahorcado().Jugar();
+            new Ahorcado().Play();
         }
-
-
-        private void Jugar()
+        private void Play()
         {
-            string palabraRandom;
-            palabraRandom = this._palabra.GetPalabraRandom();
-            ConsoleKeyInfo tecla;
+            this.DisplayInicial();
+            this.DisplayIntermediate();
+            this.DisplayFinal();
+        }
+        private void DisplayInicial()
+        {
+            ConsoleKeyInfo key;
             do
             {
-                this.DisplayInterfazBienvenida();
-                tecla = Console.ReadKey();
-            } while (tecla.Key != ConsoleKey.Enter);
-            bool ExisteElChar;
-            palabraOculta = this._tablero.CrearPalabraOculta(palabraRandom);
+                Console.WriteLine("Bienvenidos al juego! Presiona enter para continuar:");
+                key = Console.ReadKey();
+            } while (key.Key != ConsoleKey.Enter);
+        }
+        private void DisplayIntermediate()
+        {
+            this._word.GenerateWordRandom();
+            bool charExist;
             do
             {
-                Console.Clear();
-                Console.WriteLine(vidas);
-                this.DibujarPalabraResultante(palabraOculta);
-                this.MostrarLetrasIncorrectasUsadas(letrasIncorrectas);
-                Console.WriteLine(" ");
-                Console.WriteLine("Le quedan: "+ vidas + " vidas");
-                char charIngresado;
-                charIngresado = _jugador.IntroducirChar();
-                ExisteElChar = this._tablero.ChequearChar(charIngresado, palabraRandom);
-                if (ExisteElChar)
+                this.DisplayGame();
+                this._board.ReadLetter();
+                /*
+                char letterEntered;
+                letterEntered = _player.GetIntoChar();
+                charExist = this._word.CheckChar(letterEntered);
+                if (charExist)
                 {
                     Console.Clear();
-                    this.ActualizarPalabraResultante(charIngresado, palabraRandom);
+                    this._word.UpdateResultingWord(letterEntered);
                 }
                 else
                 {
-                    bool pulsado = this.ChequearSiFuePulsado(charIngresado);
+                    bool pulsado = this.CheckPulse(letterEntered);
                     if (!pulsado)
                     {
-                        this.letrasIncorrectas.Add(charIngresado);
-                        vidas--;
+                        this.wrongLetters.Add(letterEntered);
+                        this._board.RecreaseLife();
                     }
                     else
                     {
@@ -69,101 +68,60 @@ namespace Diveria.Ahorcado
                         Thread.Sleep(3000);
                     }
                 }
-
-            } while (!(this._tablero.ChequearWin(palabraOculta)) && !(this._tablero.SinVidas(vidas)));
-
-            if (this._tablero.ChequearWin(palabraOculta))
+                */
+            } while (!(this._word.CheckWin()) && !(this._board.NoLives()));
+        }
+        private void DisplayFinal()
+        {
+            if (this._word.CheckWin())
             {
                 this.DisplayWin();
             }
 
-            if (this._tablero.SinVidas(vidas))
+            if (this._board.NoLives())
             {
                 this.DisplayLose();
             }
         }
-
-        private void DisplayInterfazBienvenida()
+        private void DisplayGame()
         {
-            Console.WriteLine("Bienvenidos al juego! Presiona enter para continuar:");
+            this._word.DrawResultingWord();
+            this._board.ShowWrongLetters();
         }
-
         private void DisplayWin()
         {
             Console.Clear();
             Console.WriteLine("Adivinaste la palabra, felicidades!");
             Console.WriteLine("Presiona ENTER para cerrar el juego");
-            ConsoleKeyInfo tecla;
+            ConsoleKeyInfo key;
             do
             {
-                tecla = Console.ReadKey();
-            } while (tecla.Key != ConsoleKey.Enter);
+                key = Console.ReadKey();
+            } while (key.Key != ConsoleKey.Enter);
         }
-
         private void DisplayLose()
         {
             Console.Clear();
             Console.WriteLine("Has perdido!");
             Console.WriteLine("Presiona ENTER para cerrar el juego");
-            ConsoleKeyInfo tecla;
+            ConsoleKeyInfo key;
             do
             {
-                tecla = Console.ReadKey();
-            } while (tecla.Key != ConsoleKey.Enter);
+                key = Console.ReadKey();
+            } while (key.Key != ConsoleKey.Enter);
         }
-
-        private void ActualizarPalabraResultante(char charIngresado, string palabraRandom)
+        /*
+        private bool CheckPulse(char letterEntered)
         {
-            int idx = 0;
-            foreach (char letra in palabraRandom)
+            foreach (char letter in wrongLetters)
             {
-                if (letra == charIngresado)
-                {
-                    palabraOculta = palabraOculta.Substring(0, idx) + charIngresado + palabraOculta.Substring(idx + 1);
-                }
-                idx++;
-            }
-        }
-
-        private void DibujarPalabraResultante(string palabraOculta)
-        {
-            Console.Clear();
-            Console.WriteLine("La siguiente es la palabra oculta a adivinar:");
-            foreach (char s in palabraOculta)
-            {
-                Console.Write(" " + s + " ");
-            }
-            Console.WriteLine("");
-        }
-
-        private void MostrarLetrasIncorrectasUsadas(List<char> letrasIncorrectas)
-        {
-            Console.WriteLine("");
-            if (letrasIncorrectas.Count > 0)
-            {
-                Console.WriteLine("Las siguientes son las letras que ya fueron pulsadas y son incorrectas:");
-                foreach (char s in letrasIncorrectas)
-                {
-                    Console.Write(" " + s + " ");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Aun no ha seleccionado ninguna letra que sea incorrecta");
-            }
-        }
-
-        private bool ChequearSiFuePulsado(char charIngresado)
-        {
-            foreach (char s in letrasIncorrectas)
-            {
-                if (s == charIngresado)
+                if (letter == letterEntered)
                 {
                     return true;
                 }
             }
             return false;
         }
-
+        */
     }
 }
